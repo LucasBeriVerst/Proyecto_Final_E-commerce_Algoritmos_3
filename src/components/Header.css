@@ -1,0 +1,68 @@
+.admin-header {
+  background: #131b2a;
+  color: #fff;
+  min-height: 100vh;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 0 0 32px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.12);
+}
+.admin-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+  gap: 10px;
+}
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background: #3eea7c;
+  border-radius: 50%;
+  display: inline-block;
+}
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.btn-admin {
+  background: #18223a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 90%;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-admin.active {
+  background: #232a3a;
+  font-weight: 700;
+}
+.admin-footer {
+  margin-top: auto;
+  font-size: 0.95rem;
+  color: #bfc9db;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.footer-flag {
+  font-size: 1.1rem;
+}
