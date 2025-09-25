@@ -1,0 +1,181 @@
+.libros-panel {
+  padding: 24px 32px;
+  background: #181e2a;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.agregar-libro {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: flex-end;
+}
+
+.agregar-libro input,
+.agregar-libro select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #29304a;
+  background: #1b2232;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+
+.agregar-libro input:focus,
+.agregar-libro select:focus {
+  border-color: #4f8cff;
+}
+
+.table.libros-table {
+  margin-top: 0;
+}
+
+.table.libros-table th,
+.table.libros-table td {
+  color: #bfc9da;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.9em;
+  color: #fff;
+  background: #4f8cff;
+  margin-right: 8px;
+}
+
+.badge.virtual {
+  background: #00b894;
+}
+
+.badge.fisico {
+  background: #fdcb6e;
+  color: #232b3e;
+}
+
+.button {
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-right: 4px;
+}
+
+.button:hover {
+  background: #2563eb;
+}
+
+.button.danger {
+  background: #ff4f4f;
+}
+
+.button.danger:hover {
+  background: #d32f2f;
+}
+
+.lista-libros {
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.libro-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.libro-item input {
+  padding: 6px;
+  border-radius: 4px;
+}
+
+.libro-item button {
+  background: #e53935;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.modal-confirm-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(24, 30, 42, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-confirm {
+  background: #fff;
+  color: #232b3e;
+  border-radius: 16px;
+  padding: 36px 32px 28px 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  animation: modalIn 0.2s;
+}
+
+@keyframes modalIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-confirm-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 22px;
+  color: #e53935;
+}
+
+.modal-confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.modal-confirm .button {
+  min-width: 110px;
+  font-size: 1rem;
+  padding: 10px 0;
+  border-radius: 8px;
+}
+
+.modal-confirm .button.danger {
+  background: #e53935;
+  color: #fff;
+}
+
+.modal-confirm .button.danger:hover {
+  background: #b71c1c;
+}
+
+.modal-confirm .button {
+  background: #4f8cff;
+  color: #fff;
+}
+
+.modal-confirm .button:hover:not(.danger) {
+  background: #2563eb;
+}

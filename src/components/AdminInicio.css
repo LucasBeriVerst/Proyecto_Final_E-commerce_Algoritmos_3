@@ -1,0 +1,140 @@
+section {
+  padding: 24px 32px;
+  color: #fff;
+  min-height: 100vh;
+  background: #181e2a;
+}
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.inicio-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.summary-card {
+  background: #131b2a;
+  border-radius: 18px;
+  padding: 24px 28px 18px 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 180px;
+}
+.summary-title {
+  color: #bfc9db;
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+.summary-value {
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.summary-desc {
+  color: #7a8699;
+  font-size: 1rem;
+}
+
+/* NUEVO: Secciones extra */
+.inicio-extra {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.extra-col {
+  background: #232b3e;
+  border-radius: 14px;
+  padding: 18px 18px 12px 18px;
+  min-width: 160px;
+}
+.extra-col h3 {
+  color: #bfc9db;
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.acciones-rapidas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-accion {
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-accion:hover {
+  background: #2563eb;
+}
+.estadisticas-lista,
+.alertas-lista,
+.ayuda-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.estadisticas-lista li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  color: #bfc9db;
+}
+.stat-label {
+  font-size: 1rem;
+}
+.stat-value {
+  font-weight: 700;
+  color: #fff;
+}
+.alertas-lista .alerta {
+  color: #ff0000;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+.alerta-stock {
+  color: #ff0000;
+}
+.alerta-ventas {
+  color: #ff0000;
+}
+.ayuda-lista li a {
+  color: #4f8cff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+.ayuda-lista li a:hover {
+  color: #2563eb;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .inicio-summary,
+  .inicio-extra {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .inicio-summary,
+  .inicio-extra {
+    grid-template-columns: 1fr;
+  }
+}
