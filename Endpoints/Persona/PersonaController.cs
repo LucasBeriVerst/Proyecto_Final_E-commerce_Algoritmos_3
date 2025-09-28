@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using ATDapi.Responses;
 using ATDapi.Endpoints.PersonaC.Requests;
-using ATDapi.Repository.Models;
+using ATDapi.Models;
 using ATDapi.Endpoints.PersonaC.Handlers;
-
 
 namespace ATDapi.Endpoints.PersonaC;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PersonaControlller : ControllerBase
+public class PersonaController : ControllerBase
 {
     public static List<Persona> PersonasList = new List<Persona>();
 
@@ -27,7 +26,7 @@ public class PersonaControlller : ControllerBase
     [Route("get")]
     public BaseResponse GetOnePersonaEndpoint([FromQuery]GetOnePersona request)
     {
-       BaseResponse response = GETHandlers.GetOnePersonaHandler(PersonasList, request.id_persona);
+       BaseResponse response = GETHandlers.GetOnePersonaHandler(PersonasList, request.Id);
 
        Response.StatusCode = response.code;
        return response;
@@ -37,21 +36,19 @@ public class PersonaControlller : ControllerBase
     [Route("create")]
     public BaseResponse CreateOnePersonaEndpoint([FromBody]CreateOnePersona request)
     {
-        BaseResponse response = POSTHandlers.CreateOnePersonaHandler(request.name, PersonasList);
+        BaseResponse response = POSTHandlers.CreateOnePersonaHandler(request.Nombre, request.Email, request.Telefono, PersonasList);
 
         Response.StatusCode = response.code;
         return response;
     }
 
-
     [HttpPatch]
     [Route("edit")]
     public BaseResponse EditOnePersonaEndpoint([FromBody]EditOnePersona request)
     {
-        BaseResponse response = PATHHandlers.EditOnePersonaHandler(PersonasList, request.id_persona, request.name);
+        BaseResponse response = PATHHandlers.EditOnePersonaHandler(PersonasList, request.Id, request.Nombre, request.Email, request.Telefono);
 
         Response.StatusCode = response.code;
         return response;     
     }
-
 }

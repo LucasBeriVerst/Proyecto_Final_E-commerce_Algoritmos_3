@@ -1,8 +1,3 @@
-using System.Text;
-using ATDapi.Repository.interfaces;
-using ATDapi.Repository.Models;
-using Microsoft.IdentityModel.Tokens;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,25 +14,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = "localhost",                      
-            ValidAudience = "localhost",                   
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("EPkEoWpSwio1wENYdQfIyFqc5wwHz6Tk") 
-            )
-        };
-    });
-
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,10 +25,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseCors();
 
 app.MapControllers();
-
-app.UseCors();
 
 app.Run();
