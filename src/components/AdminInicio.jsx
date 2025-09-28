@@ -5,33 +5,29 @@ const resumen = [
   {
     title: "Ingresos",
     value: "$ 64.000,00",
-    desc: "—",
-    icon: "💰"
+    desc: "—"
   },
   {
     title: "Costos",
     value: "$ 0,00",
-    desc: "Costo de bienes vendidos",
-    icon: "📦"
+    desc: "Costo de bienes vendidos"
   },
   {
     title: "Ganancia Neta",
     value: "$ 49.000,00",
-    desc: "Ingresos – COGS – Gastos",
-    icon: "📈"
+    desc: "Ingresos – COGS – Gastos"
   },
   {
     title: "Valor de Inventario",
     value: "$ 5.284.000,00",
-    desc: "1 con stock bajo",
-    icon: "🏷️"
+    desc: "1 con stock bajo"
   }
 ];
 
 const accionesRapidas = [
-  { label: "Agregar libro", icon: "➕", seccion: "libros" },
-  { label: "Ver finanzas", icon: "💹", seccion: "finanzas" },
-  { label: "Nueva categoría", icon: "📂", seccion: "categorias" }
+  { label: "Agregar libro", seccion: "libros" },
+  { label: "Ver finanzas", seccion: "finanzas" },
+  { label: "Nueva categoría", seccion: "categorias" }
 ];
 
 const estadisticas = [
@@ -64,7 +60,7 @@ const AdminInicio = ({ setSeccion }) => {
       <div className="inicio-summary">
         {resumen.map((r, i) => (
           <div className="summary-card" key={i}>
-            <span className="summary-title">{r.icon} {r.title}</span>
+            <span className="summary-title">{r.title}</span>
             <span className="summary-value">{r.value}</span>
             <span className="summary-desc">{r.desc}</span>
           </div>
@@ -80,7 +76,7 @@ const AdminInicio = ({ setSeccion }) => {
                 className="btn-accion"
                 onClick={() => setSeccion && setSeccion(a.seccion)}
               >
-                <span>{a.icon}</span> {a.label}
+                {a.label}
               </button>
             ))}
           </div>

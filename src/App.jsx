@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import AdminInicio from "./components/AdminInicio";
+import Personas from "./components/Personas";
 import Categorias from "./components/Categorias";
 import Libros from "./components/Libros";
 import Finance from "./components/Finance";
@@ -13,6 +14,7 @@ function App() {
       <Header setSeccion={setSeccion} seccion={seccion} />
       <main style={{ marginLeft: 270, padding: 32, width: "100%" }}>
         {seccion === "inicio" && <AdminInicio setSeccion={setSeccion} />}
+        {seccion === "personas" && <Personas />}
         {seccion === "categorias" && <Categorias />}
         {seccion === "libros" && <Libros />}
         {seccion === "finanzas" && <Finance />}

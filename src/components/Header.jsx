@@ -8,15 +8,16 @@ const Header = ({ setSeccion, seccion }) => (
     </div>
     <nav className="admin-nav">
       <button className={`btn-admin${seccion === "inicio" ? " active" : ""}`} onClick={() => setSeccion("inicio")}>Inicio</button>
+      <button className={`btn-admin${seccion === "personas" ? " active" : ""}`} onClick={() => setSeccion("personas")}>Personas</button>
       <button className={`btn-admin${seccion === "libros" ? " active" : ""}`} onClick={() => setSeccion("libros")}>Libros</button>
       <button className={`btn-admin${seccion === "categorias" ? " active" : ""}`} onClick={() => setSeccion("categorias")}>Categorías</button>
       <button className={`btn-admin${seccion === "finanzas" ? " active" : ""}`} onClick={() => setSeccion("finanzas")}>Finanzas</button>
     </nav>
     <div className="admin-footer">
-      <span className="footer-flag">🇦🇷</span>
+      <span className="footer-flag">AR</span>
       <span>
-        Datos se guardan en <b>localStorage</b>.<br />
-        Archivo único · HTML + JS
+        Conectado al <b>Backend API</b>.<br />
+        React + .NET Core
       </span>
     </div>
   </aside>
