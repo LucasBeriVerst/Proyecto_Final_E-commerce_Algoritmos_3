@@ -1,21 +1,31 @@
 import { useState } from "react";
-import Header from "./components/Header";
-import AdminInicio from "./components/AdminInicio";
-import Categorias from "./components/Categorias";
-import Libros from "./components/Libros";
-import Finance from "./components/Finance";
+import Login from "./components/Login/Login.jsx";
+import Header from "./components/Header/Header.jsx";
+import AdminInicio from "./components/AdminInicio/AdminInicio.jsx";
+import Libros from "./components/Libros/Libros.jsx";
+import Categorias from "./components/Categorias/Categorias.jsx";
+import Finance from "./components/Finance/Finance.jsx";
 
 function App() {
+  const [logueado, setLogueado] = useState(false);
   const [seccion, setSeccion] = useState("inicio");
 
+  const seccionesMap = {
+    inicio: <AdminInicio setSeccion={setSeccion} />,
+    libros: <Libros />,
+    categorias: <Categorias />,
+    finance: <Finance />,
+  };
+
+  if (!logueado) {
+    return <Login onLogin={() => setLogueado(true)} />;
+  }
+
   return (
-    <div style={{ display: "flex" }}>
+    <div className="admin-panel">
       <Header setSeccion={setSeccion} seccion={seccion} />
-      <main style={{ marginLeft: 270, padding: 32, width: "100%" }}>
-        {seccion === "inicio" && <AdminInicio setSeccion={setSeccion} />}
-        {seccion === "categorias" && <Categorias />}
-        {seccion === "libros" && <Libros />}
-        {seccion === "finanzas" && <Finance />}
+      <main className="main-content">
+        {seccionesMap[seccion] || <AdminInicio setSeccion={setSeccion} />}
       </main>
     </div>
   );
