@@ -1,16 +1,18 @@
 import { useState } from "react";
 import "./Login.css";
 
-const Login = ({ onLogin }) => {
-  const [usuario, setUsuario] = useState("");
+function Login({ onLogin }) {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // validacion
-    if (usuario === "admin" && password === "1234") {
-      onLogin();
+
+    if (username === "admin" && password === "1234") {
+      onLogin({ rol: "admin", nombre: "Administrador" });
+    } else if (username === "usuario" && password === "1234") {
+      onLogin({ rol: "user", nombre: "Usuario" });
     } else {
       setError("Usuario o contraseña incorrectos");
     }
@@ -18,31 +20,39 @@ const Login = ({ onLogin }) => {
 
   return (
     <div className="login-container">
-      <form className="login-card" onSubmit={handleSubmit}>
-        <h1 className="login-title">📚 Librería Admin</h1>
-        <div className="form-group">
-          <label>Usuario</label>
-          <input
-            type="text"
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-            placeholder="Ingrese usuario"
-          />
-        </div>
-        <div className="form-group">
-          <label>Contraseña</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Ingrese contraseña"
-          />
-        </div>
+      <div className="login-card">
+        <h2 className="login-title">Iniciar sesión</h2>
+
         {error && <div className="login-error">{error}</div>}
-        <button type="submit" className="button">Ingresar</button>
-      </form>
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Usuario</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Contraseña</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <button className="button" type="submit">
+            Ingresar
+          </button>
+        </form>
+      </div>
     </div>
   );
-};
+}
 
 export default Login;
