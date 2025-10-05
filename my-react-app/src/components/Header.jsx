@@ -60,13 +60,6 @@ const Header = ({ cartItems, isLoggedIn, userEmail, onLoginClick, onCartClick })
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
-      {/* BARRA PROMOCIONAL SUPERIOR
-          Muestra ofertas importantes como envío gratis y cuotas sin interés
-          Fondo rojo para llamar la atención */}
-      <div className="bg-red-600 text-white text-center py-1 text-sm">
-        <span className="font-semibold">ENVÍO GRATIS</span> para compras mayores a $59.000 | 
-        <span className="font-semibold"> 3 CUOTAS SIN INTERÉS</span> Visa y Master
-      </div>
       
       {/* CONTENEDOR PRINCIPAL DEL HEADER
           Máximo ancho de 7xl (1280px) con padding responsive */}
@@ -97,96 +90,14 @@ const Header = ({ cartItems, isLoggedIn, userEmail, onLoginClick, onCartClick })
               </button>
               
               {isCategoriesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-96 bg-white rounded-lg shadow-xl border border-gray-200 py-4 z-50">
-                  <div className="grid grid-cols-3 gap-4 px-4">
-                    {/* Left Column - Account & Cart */}
-                    <div className="space-y-3">
-                      <h4 className="font-semibold text-gray-900 mb-3">Mi Cuenta</h4>
-                      
-                      {/* Login/Account Section */}
-                      <div className="space-y-2">
-                        {isLoggedIn ? (
-                          <div className="p-3 bg-green-50 rounded-lg border border-green-200">
-                            <div className="flex items-center space-x-2 mb-2">
-                              <span className="text-green-600">✅</span>
-                              <span className="font-medium text-green-800">Sesión iniciada</span>
-                            </div>
-                            <p className="text-sm text-green-600 truncate">{userEmail}</p>
-                            <button className="text-xs text-green-700 hover:text-green-800 mt-1">
-                              Ver perfil →
-                            </button>
-                          </div>
-                        ) : (
-                          <button
-                            onClick={() => {
-                              onLoginClick();
-                              setIsCategoriesOpen(false);
-                            }}
-                            className="w-full flex items-center space-x-2 p-3 bg-indigo-50 rounded-lg border border-indigo-200 hover:bg-indigo-100 transition-colors"
-                          >
-                            <span className="text-indigo-600">🔐</span>
-                            <div className="text-left">
-                              <p className="font-medium text-indigo-800">Iniciar Sesión</p>
-                              <p className="text-xs text-indigo-600">Accede a tu cuenta</p>
-                            </div>
-                          </button>
-                        )}
-                      </div>
-
-                      {/* Cart Section */}
-                      <div className="space-y-2">
-                        <button
-                          onClick={() => {
-                            onCartClick();
-                            setIsCategoriesOpen(false);
-                          }}
-                          className="w-full flex items-center space-x-2 p-3 bg-orange-50 rounded-lg border border-orange-200 hover:bg-orange-100 transition-colors relative"
-                        >
-                          <span className="text-orange-600">🛒</span>
-                          <div className="text-left flex-1">
-                            <p className="font-medium text-orange-800">Carrito</p>
-                            <p className="text-xs text-orange-600">
-                              {cartItemsCount > 0 
-                                ? `${cartItemsCount} producto${cartItemsCount > 1 ? 's' : ''}`
-                                : 'Vacío'
-                              }
-                            </p>
-                          </div>
-                          {cartItemsCount > 0 && (
-                            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                              {cartItemsCount}
-                            </span>
-                          )}
-                        </button>
-                      </div>
-
-                      {/* Quick Actions */}
-                      <div className="pt-2">
-                        <h5 className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
-                          Acciones Rápidas
-                        </h5>
-                        <div className="space-y-1">
-                          <button className="w-full text-left text-sm text-gray-600 hover:text-indigo-600 py-1">
-                            📋 Mis Pedidos
-                          </button>
-                          <button className="w-full text-left text-sm text-gray-600 hover:text-indigo-600 py-1">
-                            ❤️ Lista de Deseos
-                          </button>
-                          <button className="w-full text-left text-sm text-gray-600 hover:text-indigo-600 py-1">
-                            ⭐ Mis Reseñas
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Middle & Right Columns - Categories */}
-                    <div className="col-span-2">
-                      <h4 className="font-semibold text-gray-900 mb-3">Categorías</h4>
-                      <div className="grid grid-cols-2 gap-2">
+                <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 py-4 z-50">
+                  <div className="px-4">
+                    <h4 className="font-semibold text-gray-900 mb-3">Categorías</h4>
+                    <div className="grid grid-cols-2 gap-2">
                         {categories.map((category) => (
                           <a
                             key={category.id}
-                            href={`#category-${category.id}`}
+                            href={`/categoria/${category.id}`}
                             className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors group"
                             onClick={() => setIsCategoriesOpen(false)}
                           >
@@ -201,22 +112,21 @@ const Header = ({ cartItems, isLoggedIn, userEmail, onLoginClick, onCartClick })
                             </div>
                           </a>
                         ))}
-                      </div>
-                      
-                      {/* Featured Categories */}
-                      <div className="border-t border-gray-200 mt-3 pt-3">
-                        <h5 className="font-medium text-gray-900 mb-2 text-sm">Destacadas</h5>
-                        <div className="flex flex-wrap gap-2">
-                          <a href="#bestsellers" className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full hover:bg-yellow-200">
-                            🏆 Best Sellers
-                          </a>
-                          <a href="#new" className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full hover:bg-green-200">
-                            🆕 Nuevos
-                          </a>
-                          <a href="#recommended" className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200">
-                            ⭐ Recomendados
-                          </a>
-                        </div>
+                    </div>
+                    
+                    {/* Featured Categories */}
+                    <div className="border-t border-gray-200 mt-3 pt-3">
+                      <h5 className="font-medium text-gray-900 mb-2 text-sm">Destacadas</h5>
+                      <div className="flex flex-wrap gap-2">
+                        <a href="#bestsellers" className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full hover:bg-yellow-200">
+                          🏆 Best Sellers
+                        </a>
+                        <a href="#new" className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full hover:bg-green-200">
+                          🆕 Nuevos
+                        </a>
+                        <a href="#recommended" className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200">
+                          ⭐ Recomendados
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -226,12 +136,6 @@ const Header = ({ cartItems, isLoggedIn, userEmail, onLoginClick, onCartClick })
             
             <a href="#promociones" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">
               Promociones
-            </a>
-            <a href="#sucursales" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">
-              Sucursales
-            </a>
-            <a href="#packs" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">
-              Packs
             </a>
           </nav>
 

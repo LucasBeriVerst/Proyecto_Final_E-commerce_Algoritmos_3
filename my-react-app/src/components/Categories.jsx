@@ -1,62 +1,66 @@
+import { useCategorias } from '../hooks/useApi';
+
 const Categories = () => {
-  const categories = [
-    {
-      id: 1,
-      name: "Ficción",
-      icon: "📚",
-      description: "Novelas y cuentos de ficción",
-      color: "bg-blue-100 hover:bg-blue-200"
-    },
-    {
-      id: 2,
-      name: "No Ficción",
-      icon: "📖",
-      description: "Biografías, ensayos y libros informativos",
-      color: "bg-green-100 hover:bg-green-200"
-    },
-    {
-      id: 3,
-      name: "Ciencia Ficción",
-      icon: "🚀",
-      description: "Explora mundos futuros y tecnología",
-      color: "bg-purple-100 hover:bg-purple-200"
-    },
-    {
-      id: 4,
-      name: "Fantasía",
-      icon: "🧙‍♂️",
-      description: "Magia, dragones y aventuras épicas",
-      color: "bg-yellow-100 hover:bg-yellow-200"
-    },
-    {
-      id: 5,
-      name: "Romance",
-      icon: "💕",
-      description: "Historias de amor y pasión",
-      color: "bg-pink-100 hover:bg-pink-200"
-    },
-    {
-      id: 6,
-      name: "Misterio",
-      icon: "🕵️‍♂️",
-      description: "Suspenso y casos por resolver",
-      color: "bg-gray-100 hover:bg-gray-200"
-    },
-    {
-      id: 7,
-      name: "Historia",
-      icon: "🏛️",
-      description: "Eventos históricos y civilizaciones",
-      color: "bg-amber-100 hover:bg-amber-200"
-    },
-    {
-      id: 8,
-      name: "Autoayuda",
-      icon: "💪",
-      description: "Desarrollo personal y motivación",
-      color: "bg-emerald-100 hover:bg-emerald-200"
-    }
+  // Hook para obtener categorías del backend
+  const { categorias, loading, error } = useCategorias();
+
+  // Colores para las categorías
+  const colors = [
+    "bg-blue-100 hover:bg-blue-200",
+    "bg-green-100 hover:bg-green-200", 
+    "bg-purple-100 hover:bg-purple-200",
+    "bg-yellow-100 hover:bg-yellow-200",
+    "bg-pink-100 hover:bg-pink-200",
+    "bg-gray-100 hover:bg-gray-200",
+    "bg-amber-100 hover:bg-amber-200",
+    "bg-emerald-100 hover:bg-emerald-200"
   ];
+
+  // Iconos para las categorías
+  const icons = ["📚", "📖", "🚀", "🧙‍♂️", "💕", "🕵️‍♂️", "🏛️", "💪"];
+
+  // Mostrar loading
+  if (loading) {
+    return (
+      <section id="categories" className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Cargando categorías...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Mostrar error
+  if (error) {
+    return (
+      <section id="categories" className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Explora por Categorías
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Encuentra el libro perfecto para ti navegando por nuestras categorías cuidadosamente seleccionadas
+            </p>
+          </div>
+          
+          <div className="text-center">
+            <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 px-6 py-4 rounded-lg max-w-md mx-auto">
+              <div className="text-4xl mb-3">⚠️</div>
+              <h3 className="text-lg font-semibold mb-2">Servicio temporalmente no disponible</h3>
+              <p className="text-sm">
+                Las categorías no están disponibles en este momento. 
+                Por favor, intenta nuevamente más tarde.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="categories" className="py-16 bg-gray-50">
@@ -71,22 +75,33 @@ const Categories = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              className={`${category.color} p-6 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg`}
-            >
-              <div className="text-center">
-                <div className="text-4xl mb-3">{category.icon}</div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                  {category.name}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  {category.description}
-                </p>
-              </div>
+          {categorias.length === 0 ? (
+            <div className="col-span-full text-center py-12">
+              <div className="text-gray-400 text-6xl mb-4">📚</div>
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">No hay categorías disponibles</h3>
+              <p className="text-gray-500">Las categorías aparecerán aquí cuando estén disponibles</p>
             </div>
-          ))}
+          ) : (
+            categorias.map((category, index) => (
+              <div
+                key={category.id}
+                className={`${colors[index % colors.length]} p-6 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg`}
+              >
+                <div className="text-center">
+                  <div className="text-4xl mb-3">{icons[index % icons.length]}</div>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                    {category.nombre}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-2">
+                    {category.descripcion || 'Descubre libros de esta categoría'}
+                  </p>
+                  <div className="text-xs text-gray-500 bg-white bg-opacity-50 px-2 py-1 rounded-full inline-block">
+                    {category.cantidadLibros} libros
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
 
         {/* Featured categories section */}
