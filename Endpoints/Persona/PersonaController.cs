@@ -26,7 +26,7 @@ public class PersonaController : ControllerBase
     [Route("get")]
     public BaseResponse GetOnePersonaEndpoint([FromQuery]GetOnePersona request)
     {
-       BaseResponse response = GETHandlers.GetOnePersonaHandler(PersonasList, request.Id);
+       BaseResponse response = GETHandlers.GetOnePersonaHandler(PersonasList, request.id_persona);
 
        Response.StatusCode = response.code;
        return response;

@@ -53,7 +53,7 @@ public class VENTAHandlers
             Cantidad = cantidad,
             PrecioUnitario = libro.Precio,
             PrecioTotal = montoTotal,
-            StockRestante = libro.EsFisico ? libro.Stock : "Ilimitado",
+            StockRestante = libro.EsFisico ? libro.Stock.ToString() : "Ilimitado",
             FechaVenta = DateTime.Now,
             FinanzaId = nuevaFinanza.Id
         };

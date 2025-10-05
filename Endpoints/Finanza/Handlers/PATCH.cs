@@ -1,6 +1,7 @@
 using System.Net;
 using ATDapi.Models;
 using ATDapi.Responses;
+using ATDapi.Endpoints.FinanzaC.Requests;
 
 namespace ATDapi.Endpoints.FinanzaC.Handlers;
 

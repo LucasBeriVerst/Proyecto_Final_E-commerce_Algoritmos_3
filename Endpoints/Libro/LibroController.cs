@@ -56,7 +56,7 @@ public class LibroController : ControllerBase
     [Route("vender")]
     public BaseResponse VenderLibroEndpoint([FromBody]VenderLibro request)
     {
-        BaseResponse response = VENTAHandlers.VenderLibroHandler(LibrosList, FinanzaController.FinanzasList, request.LibroId, request.Cantidad);
+        BaseResponse response = VENTAHandlers.VenderLibroHandler(LibrosList, new List<Finanza>(), request.LibroId, request.Cantidad);
 
         Response.StatusCode = response.code;
         return response;

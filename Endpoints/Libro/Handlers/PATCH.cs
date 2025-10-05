@@ -1,6 +1,7 @@
 using System.Net;
 using ATDapi.Models;
 using ATDapi.Responses;
+using ATDapi.Endpoints.LibroC.Requests;
 
 namespace ATDapi.Endpoints.LibroC.Handlers;
 
