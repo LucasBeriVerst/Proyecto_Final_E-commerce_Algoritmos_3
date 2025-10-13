@@ -2,14 +2,16 @@ using System.Data;
 using System.Data.Odbc;
 using Dapper;
 using ATDapi.Repository.interfaces;
+using Microsoft.Extensions.Configuration;
 
 public class Repository<T> : IRepository<T> where T : class
 {
-    private readonly string _connectionString = "Driver={ODBC Driver 18 for SQL Server};Server=server-terciario.hilet.com,14133;Database=240425;Uid=sa;Pwd=desaHilet2025;TrustServerCertificate=Yes;";
+    private readonly string _connectionString;
 
-    public Repository()
+    public Repository(IConfiguration configuration)
     {
-
+        _connectionString = configuration.GetConnectionString("OdbcConnection") 
+            ?? "Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=Proyecto_Ecommerce_Alg3;Trusted_Connection=yes;TrustServerCertificate=yes;";
     }
 
     private IDbConnection CreateConnection()

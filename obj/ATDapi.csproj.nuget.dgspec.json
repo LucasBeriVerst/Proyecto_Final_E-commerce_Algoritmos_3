@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PatricioN\\Documents\\GitHub\\Nueva carpeta\\Proyecto_Final_E-commerce_Algoritmos_3backend\\ATDapi.csproj": {}
+    "C:\\Users\\PatricioN\\Documents\\GitHub\\1210\\Proyecto_Final_E-commerce_Algoritmos_3back\\ATDapi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PatricioN\\Documents\\GitHub\\Nueva carpeta\\Proyecto_Final_E-commerce_Algoritmos_3backend\\ATDapi.csproj": {
+    "C:\\Users\\PatricioN\\Documents\\GitHub\\1210\\Proyecto_Final_E-commerce_Algoritmos_3back\\ATDapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PatricioN\\Documents\\GitHub\\Nueva carpeta\\Proyecto_Final_E-commerce_Algoritmos_3backend\\ATDapi.csproj",
+        "projectUniqueName": "C:\\Users\\PatricioN\\Documents\\GitHub\\1210\\Proyecto_Final_E-commerce_Algoritmos_3back\\ATDapi.csproj",
         "projectName": "ATDapi",
-        "projectPath": "C:\\Users\\PatricioN\\Documents\\GitHub\\Nueva carpeta\\Proyecto_Final_E-commerce_Algoritmos_3backend\\ATDapi.csproj",
+        "projectPath": "C:\\Users\\PatricioN\\Documents\\GitHub\\1210\\Proyecto_Final_E-commerce_Algoritmos_3back\\ATDapi.csproj",
         "packagesPath": "C:\\Users\\PatricioN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PatricioN\\Documents\\GitHub\\Nueva carpeta\\Proyecto_Final_E-commerce_Algoritmos_3backend\\obj\\",
+        "outputPath": "C:\\Users\\PatricioN\\Documents\\GitHub\\1210\\Proyecto_Final_E-commerce_Algoritmos_3back\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -52,7 +52,7 @@
           "dependencies": {
             "Dapper": {
               "target": "Package",
-              "version": "[2.1.66, )"
+              "version": "[2.1.35, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -64,7 +64,7 @@
             },
             "System.Data.Odbc": {
               "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[8.0.0, )"
             }
           },
           "imports": [

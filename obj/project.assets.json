@@ -2,15 +2,15 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "Dapper/2.1.66": {
+      "Dapper/2.1.35": {
         "type": "package",
         "compile": {
-          "lib/net8.0/Dapper.dll": {
+          "lib/net7.0/Dapper.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/Dapper.dll": {
+          "lib/net7.0/Dapper.dll": {
             "related": ".xml"
           }
         }
@@ -216,8 +216,11 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "System.Data.Odbc/9.0.4": {
+      "System.Data.Odbc/8.0.0": {
         "type": "package",
+        "dependencies": {
+          "System.Text.Encoding.CodePages": "8.0.0"
+        },
         "compile": {
           "lib/net8.0/System.Data.Odbc.dll": {
             "related": ".xml"
@@ -229,12 +232,36 @@
           }
         },
         "build": {
-          "buildTransitive/net8.0/_._": {}
+          "buildTransitive/net6.0/_._": {}
         },
         "runtimeTargets": {
-          "runtimes/unix/lib/net8.0/System.Data.Odbc.dll": {
+          "runtimes/freebsd/lib/net8.0/System.Data.Odbc.dll": {
             "assetType": "runtime",
-            "rid": "unix"
+            "rid": "freebsd"
+          },
+          "runtimes/illumos/lib/net8.0/System.Data.Odbc.dll": {
+            "assetType": "runtime",
+            "rid": "illumos"
+          },
+          "runtimes/ios/lib/net8.0/System.Data.Odbc.dll": {
+            "assetType": "runtime",
+            "rid": "ios"
+          },
+          "runtimes/linux/lib/net8.0/System.Data.Odbc.dll": {
+            "assetType": "runtime",
+            "rid": "linux"
+          },
+          "runtimes/osx/lib/net8.0/System.Data.Odbc.dll": {
+            "assetType": "runtime",
+            "rid": "osx"
+          },
+          "runtimes/solaris/lib/net8.0/System.Data.Odbc.dll": {
+            "assetType": "runtime",
+            "rid": "solaris"
+          },
+          "runtimes/tvos/lib/net8.0/System.Data.Odbc.dll": {
+            "assetType": "runtime",
+            "rid": "tvos"
           },
           "runtimes/win/lib/net8.0/System.Data.Odbc.dll": {
             "assetType": "runtime",
@@ -258,24 +285,48 @@
             "related": ".xml"
           }
         }
+      },
+      "System.Text.Encoding.CodePages/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.dll": {
+            "assetType": "runtime",
+            "rid": "win"
+          }
+        }
       }
     }
   },
   "libraries": {
-    "Dapper/2.1.66": {
-      "sha512": "/q77jUgDOS+bzkmk3Vy9SiWMaetTw+NOoPAV0xPBsGVAyljd5S6P+4RUW7R3ZUGGr9lDRyPKgAMj2UAOwvqZYw==",
+    "Dapper/2.1.35": {
+      "sha512": "YKRwjVfrG7GYOovlGyQoMvr1/IJdn+7QzNXJxyMh0YfFF5yvDmTYaJOVYWsckreNjGsGSEtrMTpnzxTUq/tZQw==",
       "type": "package",
-      "path": "dapper/2.1.66",
+      "path": "dapper/2.1.35",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Dapper.png",
-        "dapper.2.1.66.nupkg.sha512",
+        "dapper.2.1.35.nupkg.sha512",
         "dapper.nuspec",
         "lib/net461/Dapper.dll",
         "lib/net461/Dapper.xml",
-        "lib/net8.0/Dapper.dll",
-        "lib/net8.0/Dapper.xml",
+        "lib/net5.0/Dapper.dll",
+        "lib/net5.0/Dapper.xml",
+        "lib/net7.0/Dapper.dll",
+        "lib/net7.0/Dapper.xml",
         "lib/netstandard2.0/Dapper.dll",
         "lib/netstandard2.0/Dapper.xml",
         "readme.md"
@@ -763,10 +814,10 @@
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
-    "System.Data.Odbc/9.0.4": {
-      "sha512": "fxBPK4Tq/0ZIBqwFKQCqUHli0fDuwIwr/u+J0wS9qtQTWxXvAT0xfhfybktCkm97zJ8FJVGS9IuSBsfMWxRjEw==",
+    "System.Data.Odbc/8.0.0": {
+      "sha512": "c+GfnZt2/HyU+voKw2fctLZClcNjPZPWS+mnIhGvDknRMqL/fwWlREWPgA4csbp9ZkQIgB4qkufgdh/oh5Ubow==",
       "type": "package",
-      "path": "system.data.odbc/9.0.4",
+      "path": "system.data.odbc/8.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -776,25 +827,59 @@
         "THIRD-PARTY-NOTICES.TXT",
         "buildTransitive/net461/System.Data.Odbc.targets",
         "buildTransitive/net462/_._",
-        "buildTransitive/net8.0/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/System.Data.Odbc.targets",
         "lib/net462/System.Data.Odbc.dll",
         "lib/net462/System.Data.Odbc.xml",
+        "lib/net6.0/System.Data.Odbc.dll",
+        "lib/net6.0/System.Data.Odbc.xml",
+        "lib/net7.0/System.Data.Odbc.dll",
+        "lib/net7.0/System.Data.Odbc.xml",
         "lib/net8.0/System.Data.Odbc.dll",
         "lib/net8.0/System.Data.Odbc.xml",
-        "lib/net9.0/System.Data.Odbc.dll",
-        "lib/net9.0/System.Data.Odbc.xml",
         "lib/netstandard2.0/System.Data.Odbc.dll",
         "lib/netstandard2.0/System.Data.Odbc.xml",
-        "runtimes/unix/lib/net8.0/System.Data.Odbc.dll",
-        "runtimes/unix/lib/net8.0/System.Data.Odbc.xml",
-        "runtimes/unix/lib/net9.0/System.Data.Odbc.dll",
-        "runtimes/unix/lib/net9.0/System.Data.Odbc.xml",
+        "runtimes/freebsd/lib/net6.0/System.Data.Odbc.dll",
+        "runtimes/freebsd/lib/net6.0/System.Data.Odbc.xml",
+        "runtimes/freebsd/lib/net7.0/System.Data.Odbc.dll",
+        "runtimes/freebsd/lib/net7.0/System.Data.Odbc.xml",
+        "runtimes/freebsd/lib/net8.0/System.Data.Odbc.dll",
+        "runtimes/freebsd/lib/net8.0/System.Data.Odbc.xml",
+        "runtimes/illumos/lib/net7.0/System.Data.Odbc.dll",
+        "runtimes/illumos/lib/net7.0/System.Data.Odbc.xml",
+        "runtimes/illumos/lib/net8.0/System.Data.Odbc.dll",
+        "runtimes/illumos/lib/net8.0/System.Data.Odbc.xml",
+        "runtimes/ios/lib/net7.0/System.Data.Odbc.dll",
+        "runtimes/ios/lib/net7.0/System.Data.Odbc.xml",
+        "runtimes/ios/lib/net8.0/System.Data.Odbc.dll",
+        "runtimes/ios/lib/net8.0/System.Data.Odbc.xml",
+        "runtimes/linux/lib/net6.0/System.Data.Odbc.dll",
+        "runtimes/linux/lib/net6.0/System.Data.Odbc.xml",
+        "runtimes/linux/lib/net7.0/System.Data.Odbc.dll",
+        "runtimes/linux/lib/net7.0/System.Data.Odbc.xml",
+        "runtimes/linux/lib/net8.0/System.Data.Odbc.dll",
+        "runtimes/linux/lib/net8.0/System.Data.Odbc.xml",
+        "runtimes/osx/lib/net6.0/System.Data.Odbc.dll",
+        "runtimes/osx/lib/net6.0/System.Data.Odbc.xml",
+        "runtimes/osx/lib/net7.0/System.Data.Odbc.dll",
+        "runtimes/osx/lib/net7.0/System.Data.Odbc.xml",
+        "runtimes/osx/lib/net8.0/System.Data.Odbc.dll",
+        "runtimes/osx/lib/net8.0/System.Data.Odbc.xml",
+        "runtimes/solaris/lib/net7.0/System.Data.Odbc.dll",
+        "runtimes/solaris/lib/net7.0/System.Data.Odbc.xml",
+        "runtimes/solaris/lib/net8.0/System.Data.Odbc.dll",
+        "runtimes/solaris/lib/net8.0/System.Data.Odbc.xml",
+        "runtimes/tvos/lib/net7.0/System.Data.Odbc.dll",
+        "runtimes/tvos/lib/net7.0/System.Data.Odbc.xml",
+        "runtimes/tvos/lib/net8.0/System.Data.Odbc.dll",
+        "runtimes/tvos/lib/net8.0/System.Data.Odbc.xml",
+        "runtimes/win/lib/net6.0/System.Data.Odbc.dll",
+        "runtimes/win/lib/net6.0/System.Data.Odbc.xml",
+        "runtimes/win/lib/net7.0/System.Data.Odbc.dll",
+        "runtimes/win/lib/net7.0/System.Data.Odbc.xml",
         "runtimes/win/lib/net8.0/System.Data.Odbc.dll",
         "runtimes/win/lib/net8.0/System.Data.Odbc.xml",
-        "runtimes/win/lib/net9.0/System.Data.Odbc.dll",
-        "runtimes/win/lib/net9.0/System.Data.Odbc.xml",
-        "system.data.odbc.9.0.4.nupkg.sha512",
+        "system.data.odbc.8.0.0.nupkg.sha512",
         "system.data.odbc.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -821,14 +906,56 @@
         "system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512",
         "system.identitymodel.tokens.jwt.nuspec"
       ]
+    },
+    "System.Text.Encoding.CodePages/8.0.0": {
+      "sha512": "OZIsVplFGaVY90G2SbpgU7EnCoOO5pw1t4ic21dBF3/1omrJFpAGoNAVpPyMVOC90/hvgkGG3VFqR13YgZMQfg==",
+      "type": "package",
+      "path": "system.text.encoding.codepages/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Text.Encoding.CodePages.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Text.Encoding.CodePages.targets",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net462/System.Text.Encoding.CodePages.dll",
+        "lib/net462/System.Text.Encoding.CodePages.xml",
+        "lib/net6.0/System.Text.Encoding.CodePages.dll",
+        "lib/net6.0/System.Text.Encoding.CodePages.xml",
+        "lib/net7.0/System.Text.Encoding.CodePages.dll",
+        "lib/net7.0/System.Text.Encoding.CodePages.xml",
+        "lib/net8.0/System.Text.Encoding.CodePages.dll",
+        "lib/net8.0/System.Text.Encoding.CodePages.xml",
+        "lib/netstandard2.0/System.Text.Encoding.CodePages.dll",
+        "lib/netstandard2.0/System.Text.Encoding.CodePages.xml",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "runtimes/win/lib/net6.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/net6.0/System.Text.Encoding.CodePages.xml",
+        "runtimes/win/lib/net7.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/net7.0/System.Text.Encoding.CodePages.xml",
+        "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.dll",
+        "runtimes/win/lib/net8.0/System.Text.Encoding.CodePages.xml",
+        "system.text.encoding.codepages.8.0.0.nupkg.sha512",
+        "system.text.encoding.codepages.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Dapper >= 2.1.66",
+      "Dapper >= 2.1.35",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0",
-      "System.Data.Odbc >= 9.0.4"
+      "System.Data.Odbc >= 8.0.0"
     ]
   },
   "packageFolders": {
@@ -838,11 +965,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PatricioN\\Documents\\GitHub\\Nueva carpeta\\Proyecto_Final_E-commerce_Algoritmos_3backend\\ATDapi.csproj",
+      "projectUniqueName": "C:\\Users\\PatricioN\\Documents\\GitHub\\1210\\Proyecto_Final_E-commerce_Algoritmos_3back\\ATDapi.csproj",
       "projectName": "ATDapi",
-      "projectPath": "C:\\Users\\PatricioN\\Documents\\GitHub\\Nueva carpeta\\Proyecto_Final_E-commerce_Algoritmos_3backend\\ATDapi.csproj",
+      "projectPath": "C:\\Users\\PatricioN\\Documents\\GitHub\\1210\\Proyecto_Final_E-commerce_Algoritmos_3back\\ATDapi.csproj",
       "packagesPath": "C:\\Users\\PatricioN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PatricioN\\Documents\\GitHub\\Nueva carpeta\\Proyecto_Final_E-commerce_Algoritmos_3backend\\obj\\",
+      "outputPath": "C:\\Users\\PatricioN\\Documents\\GitHub\\1210\\Proyecto_Final_E-commerce_Algoritmos_3back\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -883,7 +1010,7 @@
         "dependencies": {
           "Dapper": {
             "target": "Package",
-            "version": "[2.1.66, )"
+            "version": "[2.1.35, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
@@ -895,7 +1022,7 @@
           },
           "System.Data.Odbc": {
             "target": "Package",
-            "version": "[9.0.4, )"
+            "version": "[8.0.0, )"
           }
         },
         "imports": [

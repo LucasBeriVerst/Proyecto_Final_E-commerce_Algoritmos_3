@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ATDapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e36dcdc10a653f6f5b2d35e2bf614570012ef1b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3007447d997a2429df628955ef8dcee00c5e9a6e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ATDapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ATDapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
