@@ -11,6 +11,7 @@
  */
 
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Header from './Header'
 import Carousel from './Carousel'
 import ProductGrid from './ProductGrid'
@@ -160,6 +161,47 @@ function Home() {
 
       {/* CAROUSEL - Ofertas promocionales */}
       <Carousel />
+
+      {/* NAVEGACIÓN RÁPIDA */}
+      <div className="bg-white py-8">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Explora Nuestra Librería</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link 
+              to="/categorias" 
+              className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6 rounded-lg hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="text-center">
+                <div className="text-4xl mb-4">📚</div>
+                <h3 className="text-xl font-semibold mb-2">Categorías</h3>
+                <p className="text-indigo-100">Explora nuestros géneros literarios</p>
+              </div>
+            </Link>
+            
+            <Link 
+              to="/libros" 
+              className="bg-gradient-to-r from-green-500 to-teal-600 text-white p-6 rounded-lg hover:from-green-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="text-center">
+                <div className="text-4xl mb-4">📖</div>
+                <h3 className="text-xl font-semibold mb-2">Catálogo</h3>
+                <p className="text-green-100">Descubre todos nuestros libros</p>
+              </div>
+            </Link>
+            
+            <Link 
+              to="/bestsellers" 
+              className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white p-6 rounded-lg hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105"
+            >
+              <div className="text-center">
+                <div className="text-4xl mb-4">🏆</div>
+                <h3 className="text-xl font-semibold mb-2">Best Sellers</h3>
+                <p className="text-yellow-100">Los libros más populares</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
 
       {/* PRODUCT GRID - Grid de productos con filtros */}
       <ProductGrid onAddToCart={addToCart} />

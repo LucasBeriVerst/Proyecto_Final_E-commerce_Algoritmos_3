@@ -8,7 +8,7 @@
 // Configuración de la API
 export const API_CONFIG = {
   // URL base de la API del backend
-  BASE_URL: 'http://localhost:8080/api/ecommerce',
+  BASE_URL: 'http://localhost:5068/api/ecommerce',
   
   // Timeout para las peticiones (en milisegundos)
   TIMEOUT: 10000,

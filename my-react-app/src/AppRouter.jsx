@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import CategoryView from './components/CategoryView';
+import CategoriesView from './components/CategoriesView';
+import BooksView from './components/BooksView';
+import BestSellersView from './components/BestSellersView';
 
 /**
  * COMPONENTE ROUTER - Manejo de rutas de la aplicación
@@ -19,6 +22,11 @@ const AppRouter = () => {
         
         {/* Rutas de categorías */}
         <Route path="/categoria/:id" element={<CategoryView />} />
+        
+        {/* Rutas de vistas específicas */}
+        <Route path="/categorias" element={<CategoriesView />} />
+        <Route path="/libros" element={<BooksView />} />
+        <Route path="/bestsellers" element={<BestSellersView />} />
         
         {/* Ruta por defecto */}
         <Route path="*" element={<Home />} />
