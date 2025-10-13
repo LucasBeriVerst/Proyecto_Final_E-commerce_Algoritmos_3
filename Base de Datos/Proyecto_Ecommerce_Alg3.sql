@@ -1,6 +1,6 @@
-CREATE DATABASE Proyecto_Ecommerce_Alg3;
+-- CREATE DATABASE Local;
 
-USE Proyecto_Ecommerce_Alg3;
+USE Local;
 
 ------------------------------------------------------------------------------
 
