@@ -1,280 +1,146 @@
-import { useState, useEffect } from 'react';
-import { useLibros, useCategorias } from '../hooks/useApi';
+import { useState } from "react";
 
 /**
- * COMPONENTE PRODUCTGRID - Grid de productos con filtros
- * 
- * Este componente muestra:
- * - Lista de libros disponibles para compra (desde API)
- * - Filtros por categoría (desde API)
- * - Información detallada de cada libro (precio, stock, rating)
- * - Botones de compra y favoritos
- * - Diseño responsive en grid
- * 
- * @param {function} onAddToCart - Función para agregar productos al carrito
+ * PRODUCTGRID — versión funcional con libros mock y animación Tailwind.
+ * Muestra los libros aunque no haya conexión con el backend.
  */
+
 const ProductGrid = ({ onAddToCart }) => {
-  // Estado para la categoría seleccionada en los filtros
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [terminoBusqueda, setTerminoBusqueda] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  // Hooks para obtener datos del backend
-  const { libros, loading: librosLoading, error: librosError, buscarLibros, filtrarPorCategoria } = useLibros();
-  const { categorias, loading: categoriasLoading, error: categoriasError } = useCategorias();
+  // 📚 Libros mock siempre visibles
+  const mockLibros = [
+    {
+      id: 1,
+      titulo: "Cien Años de Soledad",
+      autor: "Gabriel García Márquez",
+      descripcion: "Una obra maestra del realismo mágico ambientada en Macondo.",
+      precio: 8500,
+      stock: 10,
+      imagen:
+        "https://acdn-us.mitiendanube.com/stores/004/088/117/products/725865-3fe5b2fc0395fe892217513906652764-1024-1024.webp",
+    },
+    {
+      id: 2,
+      titulo: "El Principito",
+      autor: "Antoine de Saint-Exupéry",
+      descripcion:
+        "Un clásico de la literatura infantil y filosófica que todos deberían leer.",
+      precio: 4200,
+      stock: 5,
+      imagen:
+        "https://acdn-us.mitiendanube.com/stores/004/088/117/products/712575-d7f357e8e95722eb9c17277036657687-1024-1024.webp",
+    },
+    {
+      id: 3,
+      titulo: "1984",
+      autor: "George Orwell",
+      descripcion:
+        "Distopía sobre un régimen totalitario y la vigilancia masiva.",
+      precio: 7500,
+      stock: 8,
+      imagen:
+        "https://acdn-us.mitiendanube.com/stores/004/088/117/products/714756-eb73372292df5bcd5217272111422800-1024-1024.webp",
+    },
+    {
+      id: 4,
+      titulo: "El Alquimista",
+      autor: "Paulo Coelho",
+      descripcion:
+        "Una novela sobre la búsqueda de los sueños y el destino personal.",
+      precio: 6900,
+      stock: 12,
+      imagen:
+        "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT-ywRDaE36cBsdWq3pDexODgL9gLfiikU-j1CJuBsS7FArp-ksS9Y7H0dkHwNdw0Y_UQhaTAmJ05auRRV5-cLKdsQ3ixmeXmlsyjF5ER3v-njnNqUQHi6IHw",
+    },
+  ];
 
-  // Manejar cambios en filtros
-  useEffect(() => {
-    if (terminoBusqueda.trim()) {
-      buscarLibros(terminoBusqueda);
-    } else if (selectedCategory === 'all') {
-      // Recargar todos los libros
-      buscarLibros('');
-    } else {
-      // Filtrar por categoría
-      const categoriaId = parseInt(selectedCategory);
-      if (!isNaN(categoriaId)) {
-        filtrarPorCategoria(categoriaId);
-      }
-    }
-  }, [selectedCategory, terminoBusqueda]);
-
-  // Manejar búsqueda
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (terminoBusqueda.trim()) {
-      buscarLibros(terminoBusqueda);
-    }
-  };
-
-  // Función para manejar cambio de categoría
-  const handleCategoryChange = (categoryId) => {
-    setSelectedCategory(categoryId);
-    setTerminoBusqueda(''); // Limpiar búsqueda al cambiar categoría
-  };
-
-  // Función para renderizar estrellas (rating simulado)
   const renderStars = (rating = 4.5) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-300'}>
+      <span key={i} className={i < Math.floor(rating) ? "text-yellow-400" : "text-gray-300"}>
         ⭐
       </span>
     ));
   };
 
-  // Mostrar loading
-  if (librosLoading || categoriasLoading) {
-    return (
-      <section id="books" className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Cargando libros...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // Mostrar error
-  if (librosError || categoriasError) {
-    return (
-      <section id="books" className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Novedades
-            </h2>
-            <p className="text-xl text-gray-600">
-              Descubre los últimos títulos disponibles
-            </p>
-          </div>
-          
-          <div className="text-center">
-            <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 px-6 py-4 rounded-lg max-w-md mx-auto">
-              <div className="text-4xl mb-3">⚠️</div>
-              <h3 className="text-lg font-semibold mb-2">Servicio temporalmente no disponible</h3>
-              <p className="text-sm">
-                Los libros no están disponibles en este momento. 
-                Por favor, intenta nuevamente más tarde.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section id="books" className="py-16">
+    <section id="books" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        {/* Encabezado */}
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-extrabold text-gray-900 mb-2 tracking-tight">
             Novedades
           </h2>
-          <p className="text-xl text-gray-600">
-            Los últimos lanzamientos y títulos más populares
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Los libros más recientes y recomendados para vos
           </p>
         </div>
 
-        {/* Search Bar */}
-        <div className="max-w-md mx-auto mb-8">
-          <form onSubmit={handleSearch} className="relative">
-            <input
-              type="text"
-              value={terminoBusqueda}
-              onChange={(e) => setTerminoBusqueda(e.target.value)}
-              placeholder="Buscar libros por título, autor..."
-              className="w-full px-4 py-3 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-            />
-            <button
-              type="submit"
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+        {/* Grid de libros */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {mockLibros.map((book, index) => (
+            <div
+              key={book.id}
+              className="bg-white rounded-2xl shadow-md overflow-hidden transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 opacity-0 animate-fadeIn"
+              style={{
+                animationDelay: `${index * 150}ms`,
+                animationFillMode: "forwards",
+              }}
             >
-              🔍
-            </button>
-          </form>
-        </div>
-
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          <button
-            onClick={() => handleCategoryChange('all')}
-            className={`flex items-center space-x-2 px-4 py-3 rounded-lg transition-all ${
-              selectedCategory === 'all'
-                ? 'bg-indigo-600 text-white shadow-lg transform scale-105'
-                : 'bg-white text-gray-700 hover:bg-gray-50 shadow-md hover:shadow-lg'
-            }`}
-          >
-            <span className="text-lg">📚</span>
-            <span className="font-medium">Todos</span>
-          </button>
-          {categorias.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => handleCategoryChange(category.id)}
-              className={`flex items-center space-x-2 px-4 py-3 rounded-lg transition-all ${
-                selectedCategory === category.id.toString()
-                  ? 'bg-indigo-600 text-white shadow-lg transform scale-105'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 shadow-md hover:shadow-lg'
-              }`}
-            >
-              <span className="text-lg">📖</span>
-              <span className="font-medium">{category.nombre}</span>
-              <span className="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">
-                {category.cantidadLibros}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Books Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {libros.length === 0 ? (
-            <div className="col-span-full text-center py-12">
-              <div className="text-gray-400 text-6xl mb-4">📚</div>
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">No se encontraron libros</h3>
-              <p className="text-gray-500">
-                {terminoBusqueda ? 'Intenta con otros términos de búsqueda' : 'No hay libros disponibles en esta categoría'}
-              </p>
-            </div>
-          ) : (
-            libros.map((book) => (
-              <div
-                key={book.id}
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-gray-200"
-              >
-                {/* Badges */}
-                <div className="relative">
-                  <img
-                    src={book.imagen}
-                    alt={book.titulo}
-                    className="w-full h-48 object-cover"
-                    onError={(e) => {
-                      e.target.src = 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80';
-                    }}
-                  />
-                  {book.stock <= 5 && book.stock > 0 && (
-                    <span className="absolute top-2 left-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                      ÚLTIMAS UNIDADES
-                    </span>
-                  )}
-                  {book.stock === 0 && (
-                    <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                      SIN STOCK
-                    </span>
-                  )}
-                  {book.esFisico && (
-                    <span className="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                      FÍSICO
-                    </span>
-                  )}
-                </div>
-                
-                <div className="p-4">
-                  <h3 className="text-sm font-bold text-gray-900 mb-1 line-clamp-2 uppercase">
-                    {book.titulo}
-                  </h3>
-                  <p className="text-xs text-gray-600 mb-3 uppercase font-medium">{book.autor}</p>
-                  
-                  <div className="flex items-center mb-3">
-                    <div className="flex">
-                      {renderStars()}
-                    </div>
-                    <span className="ml-2 text-xs text-gray-600">
-                      4.5
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-gray-500 mb-4 line-clamp-2">
-                    {book.descripcion || 'Sin descripción disponible'}
-                  </p>
-
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-lg font-bold text-gray-900">
-                        ${book.precio.toLocaleString('es-AR')}
-                      </span>
-                      <span className="text-xs text-gray-500">
-                        Stock: {book.stock}
-                      </span>
-                    </div>
-                    
-                    <p className="text-xs text-gray-500">
-                      Precio sin impuestos Nacionales: ${book.precio.toLocaleString('es-AR')}
-                    </p>
-                    
-                    <button
-                      onClick={() => onAddToCart(book)}
-                      disabled={book.stock === 0}
-                      className={`w-full py-2 px-3 rounded text-sm font-semibold transition-colors ${
-                        book.stock > 0
-                          ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      }`}
-                    >
-                      {book.stock > 0 ? 'Comprar' : 'Sin Stock'}
-                    </button>
-                    
-                    <div className="flex justify-between text-xs">
-                      <button className="text-indigo-600 hover:text-indigo-800">
-                        Agregar a Favoritos
-                      </button>
-                      <button className="text-indigo-600 hover:text-indigo-800">
-                        Ver Detalles
-                      </button>
-                    </div>
-                  </div>
-                </div>
+              <div className="relative">
+                <img
+                  src={book.imagen}
+                  alt={book.titulo}
+                  className="w-full h-56 object-cover"
+                />
+                {book.stock === 0 && (
+                  <span className="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                    SIN STOCK
+                  </span>
+                )}
+                {book.stock <= 5 && book.stock > 0 && (
+                  <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                    ¡Últimas unidades!
+                  </span>
+                )}
               </div>
-            ))
-          )}
-        </div>
 
-        {/* Load More Button */}
-        <div className="text-center mt-12">
-          <button className="bg-gray-200 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-300 transition-colors font-semibold">
-            Ver Más Libros
-          </button>
+              <div className="p-5">
+                <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-2">
+                  {book.titulo}
+                </h3>
+                <p className="text-sm text-gray-600 mb-3">{book.autor}</p>
+
+                <div className="flex items-center mb-3">
+                  <div>{renderStars()}</div>
+                  <span className="ml-2 text-xs text-gray-500">4.5</span>
+                </div>
+
+                <p className="text-sm text-gray-500 mb-4 line-clamp-2">
+                  {book.descripcion}
+                </p>
+
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-xl font-bold text-indigo-700">
+                    ${book.precio.toLocaleString("es-AR")}
+                  </span>
+                  <span className="text-xs text-gray-500">Stock: {book.stock}</span>
+                </div>
+
+                <button
+                  onClick={() => onAddToCart && onAddToCart(book)}
+                  disabled={book.stock === 0}
+                  className={`w-full py-2 px-3 rounded-lg text-sm font-semibold transition-colors ${
+                    book.stock > 0
+                      ? "bg-indigo-600 text-white hover:bg-indigo-700"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
+                >
+                  {book.stock > 0 ? "Agregar al carrito" : "Sin stock"}
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
