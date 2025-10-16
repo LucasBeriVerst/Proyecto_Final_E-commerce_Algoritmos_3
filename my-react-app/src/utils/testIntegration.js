@@ -6,7 +6,7 @@
  */
 
 // Configuración de prueba
-const API_BASE_URL = 'https://localhost:7000/api/ecommerce';
+const API_BASE_URL = 'https://localhost:7229/api/ecommerce';
 
 /**
  * Función para probar un endpoint
@@ -31,17 +31,17 @@ async function probarEndpoint(endpoint, metodo = 'GET', datos = null) {
     const data = await response.json();
     
     if (response.ok) {
-      console.log(`✅ Éxito: ${endpoint}`);
+      console.log(`Éxito: ${endpoint}`);
       console.log(`   Respuesta:`, data);
       return { exito: true, datos: data };
     } else {
-      console.log(`❌ Error: ${endpoint} - ${response.status}`);
+      console.log(`Error: ${endpoint} - ${response.status}`);
       console.log(`   Mensaje:`, data.message);
       return { exito: false, error: data.message };
     }
   } catch (error) {
-    console.log(`❌ Error de conexión: ${endpoint}`);
-    console.log(`   Error:`, error.message);
+    console.log(`Error de conexión: ${endpoint}`);
+    console.log(`Error:`, error.message);
     return { exito: false, error: error.message };
   }
 }
@@ -50,7 +50,7 @@ async function probarEndpoint(endpoint, metodo = 'GET', datos = null) {
  * Función principal de pruebas
  */
 async function ejecutarPruebas() {
-  console.log('🚀 Iniciando pruebas de integración Frontend-Backend');
+  console.log('Iniciando pruebas de integración Frontend-Backend');
   console.log('=' .repeat(60));
   
   const resultados = {
@@ -89,15 +89,15 @@ async function ejecutarPruebas() {
 
   // Resumen de resultados
   console.log('\n' + '=' .repeat(60));
-  console.log('📊 RESUMEN DE PRUEBAS');
+  console.log('RESUMEN DE PRUEBAS');
   console.log('=' .repeat(60));
-  console.log(`✅ Pruebas exitosas: ${resultados.exitosos}`);
-  console.log(`❌ Pruebas fallidas: ${resultados.fallidos}`);
-  console.log(`📈 Total de pruebas: ${resultados.exitosos + resultados.fallidos}`);
+  console.log(`Pruebas exitosas: ${resultados.exitosos}`);
+  console.log(`Pruebas fallidas: ${resultados.fallidos}`);
+  console.log(`Total de pruebas: ${resultados.exitosos + resultados.fallidos}`);
 
   // Detalles de pruebas fallidas
   if (resultados.fallidos > 0) {
-    console.log('\n❌ PRUEBAS FALLIDAS:');
+    console.log('\nPRUEBAS FALLIDAS:');
     resultados.detalles
       .filter(d => !d.resultado.exito)
       .forEach(d => {
@@ -106,16 +106,16 @@ async function ejecutarPruebas() {
   }
 
   // Recomendaciones
-  console.log('\n💡 RECOMENDACIONES:');
+  console.log('\nRECOMENDACIONES:');
   if (resultados.fallidos === 0) {
-    console.log('   🎉 ¡Todas las pruebas pasaron! La integración está funcionando correctamente.');
-    console.log('   🚀 Puedes proceder a usar la aplicación con confianza.');
+    console.log('   ¡Todas las pruebas pasaron! La integración está funcionando correctamente.');
+    console.log('   Puedes proceder a usar la aplicación con confianza.');
   } else {
-    console.log('   🔧 Revisa los errores anteriores y asegúrate de que:');
-    console.log('      • El backend esté ejecutándose en https://localhost:7000');
-    console.log('      • La base de datos esté configurada y ejecutándose');
-    console.log('      • Los endpoints estén correctamente implementados');
-    console.log('      • No haya problemas de CORS');
+    console.log('Revisa los errores anteriores y asegúrate de que:');
+    console.log('El backend esté ejecutándose en https://localhost:7000');
+    console.log('La base de datos esté configurada y ejecutándose');
+    console.log('Los endpoints estén correctamente implementados');
+    console.log('No haya problemas de CORS');
   }
 
   return resultados;
@@ -125,7 +125,7 @@ async function ejecutarPruebas() {
  * Función para probar la funcionalidad del frontend
  */
 function probarFrontend() {
-  console.log('\n🎨 PRUEBAS DEL FRONTEND');
+  console.log('\nPRUEBAS DEL FRONTEND');
   console.log('=' .repeat(40));
   
   const pruebas = [
@@ -167,7 +167,7 @@ function probarFrontend() {
 
   pruebas.forEach(prueba => {
     const resultado = prueba.verificar();
-    console.log(`${resultado ? '✅' : '❌'} ${prueba.nombre}: ${resultado ? 'OK' : 'FALLO'}`);
+    console.log(`${resultado ? 'si' : 'no'} ${prueba.nombre}: ${resultado ? 'OK' : 'FALLO'}`);
   });
 }
 
@@ -175,7 +175,7 @@ function probarFrontend() {
 if (typeof window === 'undefined') {
   // Ejecutar en Node.js
   ejecutarPruebas().then(resultados => {
-    console.log('\n🏁 Pruebas completadas');
+    console.log('\nPruebas completadas');
     process.exit(resultados.fallidos > 0 ? 1 : 0);
   });
 } else {
@@ -183,9 +183,9 @@ if (typeof window === 'undefined') {
   window.ejecutarPruebasIntegracion = ejecutarPruebas;
   window.probarFrontend = probarFrontend;
   
-  console.log('🔧 Script de pruebas cargado. Usa:');
-  console.log('   • ejecutarPruebasIntegracion() - Para probar la API');
-  console.log('   • probarFrontend() - Para probar el frontend');
+  console.log('Script de pruebas cargado. Usa:');
+  console.log('ejecutarPruebasIntegracion() - Para probar la API');
+  console.log('probarFrontend() - Para probar el frontend');
 }
 
 export { ejecutarPruebas, probarFrontend };
